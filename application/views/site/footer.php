@@ -34,7 +34,7 @@
             </div>
             <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
                 <div class="footer__widget">
-                    <h6>LPT Shopping</h6>
+                    <h6>98 StreetWear Shopping</h6>
                     <ul>
                         <li><a href="<?php echo base_url('moi'); ?>">Mới</a></li>
                         <li><a href="<?php echo base_url('ban-chay'); ?>">Bán Chạy</a></li>
@@ -45,7 +45,7 @@
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6">
                 <div class="footer__widget">
-                    <h6>LPT SHOP</h6>
+                    <h6>98 StreetWea SHOP</h6>
                     <ul>
                         <li><a href="#">Liên hệ với chúng tôi</a></li>
                         <li><a href="#">Phương thức thanh toán</a></li>
