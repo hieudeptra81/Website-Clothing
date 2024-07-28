@@ -1,367 +1,124 @@
 <?php
-/**
- * CodeIgniter
- *
- * An open source application development framework for PHP
- *
- * This content is released under the MIT License (MIT)
- *
- * Copyright (c) 2014 - 2017, British Columbia Institute of Technology
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- * @package	CodeIgniter
- * @author	EllisLab Dev Team
- * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
- * @copyright	Copyright (c) 2014 - 2017, British Columbia Institute of Technology (http://bcit.ca/)
- * @license	http://opensource.org/licenses/MIT	MIT License
- * @link	https://codeigniter.com
- * @since	Version 1.0.0
- * @filesource
- */
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/**
- * Database Driver Class
- *
- * This is the platform-independent base DB implementation class.
- * This class will not be called directly. Rather, the adapter
- * class for the specific database will extend and instantiate it.
- *
- * @package		CodeIgniter
- * @subpackage	Drivers
- * @category	Database
- * @author		EllisLab Dev Team
- * @link		https://codeigniter.com/user_guide/database/
- */
+
 abstract class CI_DB_driver {
 
-	/**
-	 * Data Source Name / Connect string
-	 *
-	 * @var	string
-	 */
 	public $dsn;
 
-	/**
-	 * Username
-	 *
-	 * @var	string
-	 */
 	public $username;
 
-	/**
-	 * Password
-	 *
-	 * @var	string
-	 */
+	
 	public $password;
 
-	/**
-	 * Hostname
-	 *
-	 * @var	string
-	 */
+	
 	public $hostname;
 
-	/**
-	 * Database name
-	 *
-	 * @var	string
-	 */
 	public $database;
 
-	/**
-	 * Database driver
-	 *
-	 * @var	string
-	 */
+
 	public $dbdriver		= 'mysqli';
 
-	/**
-	 * Sub-driver
-	 *
-	 * @used-by	CI_DB_pdo_driver
-	 * @var	string
-	 */
+	
 	public $subdriver;
 
-	/**
-	 * Table prefix
-	 *
-	 * @var	string
-	 */
+	
 	public $dbprefix		= '';
 
-	/**
-	 * Character set
-	 *
-	 * @var	string
-	 */
 	public $char_set		= 'utf8';
 
-	/**
-	 * Collation
-	 *
-	 * @var	string
-	 */
+	
 	public $dbcollat		= 'utf8_general_ci';
 
-	/**
-	 * Encryption flag/data
-	 *
-	 * @var	mixed
-	 */
+	
 	public $encrypt			= FALSE;
 
-	/**
-	 * Swap Prefix
-	 *
-	 * @var	string
-	 */
+	
 	public $swap_pre		= '';
 
-	/**
-	 * Database port
-	 *
-	 * @var	int
-	 */
+	
 	public $port			= '';
 
-	/**
-	 * Persistent connection flag
-	 *
-	 * @var	bool
-	 */
+	
 	public $pconnect		= FALSE;
 
-	/**
-	 * Connection ID
-	 *
-	 * @var	object|resource
-	 */
 	public $conn_id			= FALSE;
 
-	/**
-	 * Result ID
-	 *
-	 * @var	object|resource
-	 */
+	
 	public $result_id		= FALSE;
 
-	/**
-	 * Debug flag
-	 *
-	 * Whether to display error messages.
-	 *
-	 * @var	bool
-	 */
+	
 	public $db_debug		= FALSE;
 
-	/**
-	 * Benchmark time
-	 *
-	 * @var	int
-	 */
+	
 	public $benchmark		= 0;
 
-	/**
-	 * Executed queries count
-	 *
-	 * @var	int
-	 */
+	
 	public $query_count		= 0;
 
-	/**
-	 * Bind marker
-	 *
-	 * Character used to identify values in a prepared statement.
-	 *
-	 * @var	string
-	 */
+	
 	public $bind_marker		= '?';
 
-	/**
-	 * Save queries flag
-	 *
-	 * Whether to keep an in-memory history of queries for debugging purposes.
-	 *
-	 * @var	bool
-	 */
+	
 	public $save_queries		= TRUE;
 
-	/**
-	 * Queries list
-	 *
-	 * @see	CI_DB_driver::$save_queries
-	 * @var	string[]
-	 */
+	
 	public $queries			= array();
 
-	/**
-	 * Query times
-	 *
-	 * A list of times that queries took to execute.
-	 *
-	 * @var	array
-	 */
+	
 	public $query_times		= array();
 
-	/**
-	 * Data cache
-	 *
-	 * An internal generic value cache.
-	 *
-	 * @var	array
-	 */
+	
 	public $data_cache		= array();
 
-	/**
-	 * Transaction enabled flag
-	 *
-	 * @var	bool
-	 */
+	
 	public $trans_enabled		= TRUE;
 
-	/**
-	 * Strict transaction mode flag
-	 *
-	 * @var	bool
-	 */
+	
 	public $trans_strict		= TRUE;
 
-	/**
-	 * Transaction depth level
-	 *
-	 * @var	int
-	 */
+	
 	protected $_trans_depth		= 0;
 
-	/**
-	 * Transaction status flag
-	 *
-	 * Used with transactions to determine if a rollback should occur.
-	 *
-	 * @var	bool
-	 */
+	
 	protected $_trans_status	= TRUE;
 
-	/**
-	 * Transaction failure flag
-	 *
-	 * Used with transactions to determine if a transaction has failed.
-	 *
-	 * @var	bool
-	 */
+	
 	protected $_trans_failure	= FALSE;
 
-	/**
-	 * Cache On flag
-	 *
-	 * @var	bool
-	 */
+	
 	public $cache_on		= FALSE;
 
-	/**
-	 * Cache directory path
-	 *
-	 * @var	bool
-	 */
+	
 	public $cachedir		= '';
 
-	/**
-	 * Cache auto-delete flag
-	 *
-	 * @var	bool
-	 */
+	
 	public $cache_autodel		= FALSE;
 
-	/**
-	 * DB Cache object
-	 *
-	 * @see	CI_DB_cache
-	 * @var	object
-	 */
+	
 	public $CACHE;
 
-	/**
-	 * Protect identifiers flag
-	 *
-	 * @var	bool
-	 */
+	
 	protected $_protect_identifiers		= TRUE;
 
-	/**
-	 * List of reserved identifiers
-	 *
-	 * Identifiers that must NOT be escaped.
-	 *
-	 * @var	string[]
-	 */
+	
 	protected $_reserved_identifiers	= array('*');
 
-	/**
-	 * Identifier escape character
-	 *
-	 * @var	string
-	 */
+	
 	protected $_escape_char = '"';
 
-	/**
-	 * ESCAPE statement string
-	 *
-	 * @var	string
-	 */
+	
 	protected $_like_escape_str = " ESCAPE '%s' ";
 
-	/**
-	 * ESCAPE character
-	 *
-	 * @var	string
-	 */
 	protected $_like_escape_chr = '!';
 
-	/**
-	 * ORDER BY random keyword
-	 *
-	 * @var	array
-	 */
+	
 	protected $_random_keyword = array('RAND()', 'RAND(%d)');
 
-	/**
-	 * COUNT string
-	 *
-	 * @used-by	CI_DB_driver::count_all()
-	 * @used-by	CI_DB_query_builder::count_all_results()
-	 *
-	 * @var	string
-	 */
+	
 	protected $_count_string = 'SELECT COUNT(*) AS ';
 
-	// --------------------------------------------------------------------
-
-	/**
-	 * Class constructor
-	 *
-	 * @param	array	$params
-	 * @return	void
-	 */
 	public function __construct($params)
 	{
 		if (is_array($params))
@@ -375,21 +132,10 @@ abstract class CI_DB_driver {
 		log_message('info', 'Database Driver Class Initialized');
 	}
 
-	// --------------------------------------------------------------------
-
-	/**
-	 * Initialize Database Settings
-	 *
-	 * @return	bool
-	 */
+	
 	public function initialize()
 	{
-		/* If an established connection is available, then there's
-		 * no need to connect and select the database.
-		 *
-		 * Depending on the database driver, conn_id can be either
-		 * boolean TRUE, a resource or an object.
-		 */
+		
 		if ($this->conn_id)
 		{
 			return TRUE;

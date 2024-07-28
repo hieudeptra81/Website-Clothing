@@ -1,15 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/*
-| -------------------------------------------------------------------
-| USER AGENT TYPES
-| -------------------------------------------------------------------
-| This file contains four arrays of user agent data. It is used by the
-| User Agent Class to help identify browser, platform, robot, and
-| mobile device data. The array keys are used to identify the device
-| and the array values are used to set the actual name of the item.
-*/
+
 $platforms = array(
 	'windows nt 10.0'	=> 'Windows 10',
 	'windows nt 6.3'	=> 'Windows 8.1',
@@ -56,14 +48,13 @@ $platforms = array(
 );
 
 
-// The order of this array should NOT be changed. Many browsers return
-// multiple browser types so we want to identify the sub-type first.
+
 $browsers = array(
 	'OPR'			=> 'Opera',
 	'Flock'			=> 'Flock',
 	'Edge'			=> 'Spartan',
 	'Chrome'		=> 'Chrome',
-	// Opera 10+ always reports Opera/9.80 and appends Version/<real version> to the user agent string
+	
 	'Opera.*?Version'	=> 'Opera',
 	'Opera'			=> 'Opera',
 	'MSIE'			=> 'Internet Explorer',
@@ -169,7 +160,7 @@ $mobiles = array(
 	'opera mobi'	=> 'Opera Mobile',
 	'fennec'		=> 'Firefox Mobile',
 
-	// Other
+
 	'digital paths'	=> 'Digital Paths',
 	'avantgo'		=> 'AvantGo',
 	'xiino'			=> 'Xiino',
@@ -178,7 +169,7 @@ $mobiles = array(
 	'docomo'		=> 'NTT DoCoMo',
 	'o2'			=> 'O2',
 
-	// Fallback
+
 	'mobile'		=> 'Generic Mobile',
 	'wireless'		=> 'Generic Mobile',
 	'j2me'			=> 'Generic Mobile',
@@ -190,7 +181,6 @@ $mobiles = array(
 	'cellphone'		=> 'Generic Mobile'
 );
 
-// There are hundreds of bots but these are the most common.
 $robots = array(
 	'googlebot'		=> 'Googlebot',
 	'msnbot'		=> 'MSNBot',

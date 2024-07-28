@@ -1,5 +1,5 @@
 <meta charset="UTF-8">
-<title>98 StreetWear Shop</title>
+<title>Shop juno</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <script src="<?php echo public_url(); ?>js/jquery-3.1.1.js" type="text/javascript"></script>
@@ -25,4 +25,4 @@
         });
     });
 </script>
-<style>.raty img{width:16px !important;height:16px; !important;}</style>
+<style>.raty img{width:16px !important;height:16px; }</style>

@@ -51,7 +51,6 @@
         <div class="col-md-4">Quản lý sản phẩm
 
         </div>
-        <div class="col-md-2"  style="float:right"><a href="<?php echo admin_url('product/add'); ?>" class='btn btn-info'><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Thêm sản phẩm</a></div>
         <div class="col-md-1"></div>
         <div class="col-md-6"  style="float:right;margin-top: 5px">
             <form role="search" action='<?php echo admin_url('product/search'); ?>' method="post">
